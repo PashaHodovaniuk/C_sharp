@@ -22,7 +22,7 @@ namespace Test_Voise_text
         }
         SpeechSynthesizer sSynth = new SpeechSynthesizer();
         PromptBuilder pBilder = new PromptBuilder();
-        SpeechRecognizer sReconize = new SpeechRecognizer();
+        SpeechRecognitionEngine sReconize = new SpeechRecognitionEngine();
         private void btnGo_Click(object sender, EventArgs e)
         {
             pBilder.ClearContent();
@@ -33,17 +33,17 @@ namespace Test_Voise_text
         private void button1_Click(object sender, EventArgs e)
         {
             button1.Enabled = false;
-            button1.Enabled = true;
+            button2.Enabled = true;
             Choices cList = new Choices();
-            cList.Add(new string[] {"hello","test", "it works", "Pasha"});
+            cList.Add(new string[] {"Hello","test", "files", "open","thank you", "Jaliks","exit"});
             Grammar gr = new Grammar(new GrammarBuilder(cList));            
             try
             {
-                //sReconize.RequestRecognizerUpdate();
-               // sReconize.LoadGrammar(gr);
+                sReconize.RequestRecognizerUpdate();
+                sReconize.LoadGrammar(gr);
                 sReconize.SpeechRecognized += sReconize_SpeechRecognized;                
-                //sReconize.SetInputToDefaultAudioDevice();
-                //sReconize.RecognizeAsync(RecognizeMode.Multiple);
+                sReconize.SetInputToDefaultAudioDevice();
+                sReconize.RecognizeAsync(RecognizeMode.Multiple);
             }
             catch
             {
@@ -54,8 +54,21 @@ namespace Test_Voise_text
 
         private void sReconize_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-            textBox1.Text += e.Result.ToString() + " ";
-            MessageBox.Show("speech recognize: "+e.Result.ToString());
+            if (e.Result.Text.ToString() == "exit")
+            {
+                Application.Exit();
+            }
+            else
+            {
+                textBox1.Text += e.Result.Text.ToString() + " ";
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            sReconize.RecognizeAsyncStop();
+            button1.Enabled = true;
+            button2.Enabled = false;
         }
     }
 }
