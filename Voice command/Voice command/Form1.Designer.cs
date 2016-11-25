@@ -74,6 +74,7 @@
             this.btn_edit.TabIndex = 1;
             this.btn_edit.Text = "Edit process";
             this.btn_edit.UseVisualStyleBackColor = true;
+            this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
             // 
             // btn_delete
             // 
@@ -258,6 +259,7 @@
             this.Controls.Add(this.btn_add);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Voice command";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
@@ -288,12 +290,12 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.Button btn_exit;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn DG_number;
         private System.Windows.Forms.DataGridViewTextBoxColumn DG_Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn DB_PCommand;
         private System.Windows.Forms.DataGridViewTextBoxColumn DG_FilePath;
         private System.Windows.Forms.DataGridViewTextBoxColumn DG_CloseProc;
+        public System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

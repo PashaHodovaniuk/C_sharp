@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Speech.Recognition;
-using System.Threading;
 using System.Diagnostics;
 using System.IO;
 
@@ -16,7 +9,7 @@ namespace Voice_command
 {
     public partial class Form1 : Form
     {
-        Add_Edit Next = new Add_Edit();
+        Add_Edit form2 = new Add_Edit();
         public Form1()
         {
             InitializeComponent();
@@ -227,15 +220,22 @@ namespace Voice_command
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            Next.Text = "Add command";
-            Next.btn_Add.Visible = true;
-            Next.btn_Edit.Visible = false;
-            Next.tB_CloseProcess.Text = "";
-            Next.tB_NameCommand.Text = "";
-            Next.tB_number.Text = "";
-            Next.tB_PathFile.Text = "";
-            Next.tB_PronunciationCommand.Text = "";
-            Next.Show();
+            form2.Show();
+            form2.Text = "Add command";
+            form2.btn_Add.Visible = true;
+            form2.btn_Edit.Visible = false;
+            form2.tB_CloseProcess.Text = "";
+            form2.tB_NameCommand.Text = "";
+            form2.tB_PathFile.Text = "";
+            form2.tB_PronunciationCommand.Text = "";            
+        }
+
+        private void btn_edit_Click(object sender, EventArgs e)
+        {
+            form2.Show();
+            form2.Text = "Edit command";
+            form2.btn_Add.Visible = false;
+            form2.btn_Edit.Visible = true;
         }
     }
 }
