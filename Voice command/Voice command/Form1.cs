@@ -14,6 +14,7 @@ namespace Voice_command
         {
             InitializeComponent();
         }
+
         public Choices cList1 = new Choices();
         SpeechRecognitionEngine sReconize = new SpeechRecognitionEngine();
         Choices cList2 = new Choices();
@@ -26,6 +27,7 @@ namespace Voice_command
         int numberOfRecords;
         int indexOfProcess = 0;
         bool flag = false;
+
         private void btn_exit_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -39,7 +41,10 @@ namespace Voice_command
         private void Form1_Load(object sender, EventArgs e)
         {
             dataGridView1.Rows.Clear();
-            StreamReader rd = new StreamReader(@"D:\C#\C_sharp\Voice command\Voice command\DB\Data commands.txt");
+            var applicationDirectory = Path.GetDirectoryName(Application.ExecutablePath);
+            const string fileNameToOpen = "DB\\Data commands.txt";
+            var filePathToOpen = Path.Combine(applicationDirectory, fileNameToOpen);
+            StreamReader rd = new StreamReader(filePathToOpen);
             string[] str;
             string inpstr;
             char[] delim = new char[] { '|' };//Разделители
@@ -50,16 +55,17 @@ namespace Voice_command
             }
             rd.Close();
         }
+
         public void addCall(int count)
         {
-            call = new string[(count*3)];
+            call = new string[(count*2)+2];
             killProc = new string[count+3];
             killCall = new string[count];
             path = new string[count];
             call[0] = "Play";
-            call[1] = "exit";
+            call[1] = "Exit";
             int j = 0;
-            for (int i = 2; i < count*3; i++)
+            for (int i = 2; i < (count*2)+2; i++)
             {
                 call[i] = dataGridView1[2, j].Value.ToString();
                 i++;                
@@ -102,16 +108,17 @@ namespace Voice_command
         {
             if (flag)
             {
-                if ((e.Result.Text.ToString() == "Play") || (e.Result.Text.ToString() == "exit"))
+                if ((e.Result.Text.ToString() == "Play") || (e.Result.Text.ToString() == "Exit"))
                 {
                     flag = false;
-                    MessageBox.Show("Err!");
+                    System.Console.Beep(333, 1000);
+                    //MessageBox.Show("Err!");
                     return;
-                }          
+                }
                 runCommand(e);
                 flag = false;
             }
-            if (e.Result.Text.ToString() == "exit")
+            if (e.Result.Text.ToString() == "Exit")
             {
                 Application.Exit();
             }
@@ -120,10 +127,11 @@ namespace Voice_command
                 if (e.Result.Text.ToString() == "Play")
                 {
                     flag = true;
-                    MessageBox.Show("Voice!");
+                    System.Console.Beep(200, 500);
+                    //MessageBox.Show("Voice!");
                 }
-            }            
-    }
+            }
+        }
 
         private void runCommand(SpeechRecognizedEventArgs e)
         {
@@ -206,7 +214,10 @@ namespace Voice_command
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TextWriter write = new StreamWriter(@"D:\C#\C_sharp\Voice command\Voice command\DB\Data commands.txt");
+            var applicationDirectory = Path.GetDirectoryName(Application.ExecutablePath);
+            const string fileNameToOpen = "DB\\Data commands.txt";
+            var filePathToOpen = Path.Combine(applicationDirectory, fileNameToOpen);
+            TextWriter write = new StreamWriter(filePathToOpen);
             for (int i = 0; i < dataGridView1.Rows.Count - 1; i++) 
             {
                 for (int j=0; j<dataGridView1.Columns.Count; j++)
@@ -217,6 +228,7 @@ namespace Voice_command
             }
             write.Close();
         }
+
         private void btn_add_Click(object sender, EventArgs e)
         {
             Add_Edit temp = new Add_Edit();
@@ -230,19 +242,11 @@ namespace Voice_command
             temp.Show();
             temp.Show("Edit", dataGridView1);
         }
-
         
         public void Hide(string temp, DataGridView param)
         {
             dataGridView1 = param;
-           if (temp == "Add")
-            {
-                dataGridView1.Refresh();
-            }
-            if (temp == "Edit")
-            {
-                dataGridView1.Refresh();
-            }
+            dataGridView1.Refresh();            
         }
 
         private void btn_delete_Click(object sender, EventArgs e)

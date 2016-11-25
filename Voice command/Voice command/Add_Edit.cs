@@ -13,13 +13,14 @@ namespace Voice_command
         }
 
         DataGridView dr;
+        public string[] temp;
+
         public void Show(string temp, DataGridView param)
         {
             dr = param;
-            if(temp == "Add")
-            {   
-                             
-                //Add_Edit.Text = "Add command";
+            if (temp == "Add")
+            {
+                this.Text = "Add command";
                 btn_Add.Visible = true;
                 btn_Edit.Visible = false;
                 tB_CloseProcess.Text = "";
@@ -29,7 +30,7 @@ namespace Voice_command
             }
             if (temp == "Edit")
             {
-                //Add_Edit.Text = "Add command";
+                this.Text = "Edit command";
                 btn_Add.Visible = false;
                 btn_Edit.Visible = true;
                 tB_CloseProcess.Text = "";
@@ -40,9 +41,9 @@ namespace Voice_command
                 tB_CloseProcess.Text = dr.Rows[dr.CurrentCell.RowIndex].Cells[4].Value.ToString();
                 tB_PronunciationCommand.Text = dr.Rows[dr.CurrentCell.RowIndex].Cells[2].Value.ToString();
                 tB_PathFile.Text = dr.Rows[dr.CurrentCell.RowIndex].Cells[3].Value.ToString();
-                
             }
         }
+
         private void Add_Edit_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Hide();
@@ -99,7 +100,6 @@ namespace Voice_command
             }
         }
 
-        public string[] temp;
         private void btn_Add_Click(object sender, EventArgs e)
         {
             Form1 form = new Form1();
