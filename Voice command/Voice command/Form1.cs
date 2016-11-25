@@ -16,6 +16,7 @@ namespace Voice_command
 {
     public partial class Form1 : Form
     {
+        Add_Edit Next = new Add_Edit();
         public Form1()
         {
             InitializeComponent();
@@ -222,6 +223,19 @@ namespace Voice_command
                 write.WriteLine();
             }
             write.Close();
+        }
+
+        private void btn_add_Click(object sender, EventArgs e)
+        {
+            Next.Text = "Add command";
+            Next.btn_Add.Visible = true;
+            Next.btn_Edit.Visible = false;
+            Next.tB_CloseProcess.Text = "";
+            Next.tB_NameCommand.Text = "";
+            Next.tB_number.Text = "";
+            Next.tB_PathFile.Text = "";
+            Next.tB_PronunciationCommand.Text = "";
+            Next.Show();
         }
     }
 }

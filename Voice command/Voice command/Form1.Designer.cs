@@ -63,6 +63,7 @@
             this.btn_add.TabIndex = 0;
             this.btn_add.Text = "Add process";
             this.btn_add.UseVisualStyleBackColor = true;
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
             // btn_edit
             // 
