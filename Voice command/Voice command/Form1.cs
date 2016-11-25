@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Speech.Recognition;
 using System.Threading;
 using System.Diagnostics;
-
+using System.IO;
 
 namespace Voice_command
 {
@@ -41,11 +41,20 @@ namespace Voice_command
         {
             Application.Exit();
         }
-
+        
         private void Form1_Load(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Add("1","Steam","Start steam", "E:\\stream\\Steam.exe", "Close steam");
-            dataGridView1.Rows.Add("2", "Chrome", "Start chrome", "chrome.exe", "Close chrome");
+            dataGridView1.Rows.Clear();
+            StreamReader rd = new StreamReader(@"D:\C#\C_sharp\Voice command\Voice command\DB\Data commands.txt");
+            string[] str;
+            string inpstr;
+            char[] delim = new char[] { '|' };//Разделители
+            while ((inpstr = rd.ReadLine()) != null)
+            {
+                str = inpstr.Split(delim);//Разбиваем строку на отдельные строки по разделителям
+                dataGridView1.Rows.Add(str);
+            }
+            rd.Close();
         }
         public void addCall(int count)
         {
@@ -199,6 +208,20 @@ namespace Voice_command
             startToolS.Enabled = true;
             stopToolS.Enabled = false;
             btn_stop.Enabled = false;
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TextWriter write = new StreamWriter(@"D:\C#\C_sharp\Voice command\Voice command\DB\Data commands.txt");
+            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++) 
+            {
+                for (int j=0; j<dataGridView1.Columns.Count; j++)
+                {
+                    write.Write(dataGridView1.Rows[i].Cells[j].Value.ToString() +"|");
+                }
+                write.WriteLine();
+            }
+            write.Close();
         }
     }
 }
