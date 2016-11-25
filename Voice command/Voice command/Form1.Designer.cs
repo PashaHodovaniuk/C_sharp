@@ -228,7 +228,7 @@
             // 
             this.DG_Name.HeaderText = "Name command";
             this.DG_Name.Name = "DG_Name";
-            this.DG_Name.Width = 150;
+            this.DG_Name.Width = 130;
             // 
             // DB_PCommand
             // 
@@ -246,7 +246,6 @@
             // 
             this.DG_CloseProc.HeaderText = "Closed processes";
             this.DG_CloseProc.Name = "DG_CloseProc";
-            this.DG_CloseProc.Width = 70;
             // 
             // Form1
             // 
@@ -265,6 +264,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Voice command";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -294,12 +294,12 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.Button btn_exit;
+        public System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn DG_number;
         private System.Windows.Forms.DataGridViewTextBoxColumn DG_Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn DB_PCommand;
         private System.Windows.Forms.DataGridViewTextBoxColumn DG_FilePath;
         private System.Windows.Forms.DataGridViewTextBoxColumn DG_CloseProc;
-        public System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

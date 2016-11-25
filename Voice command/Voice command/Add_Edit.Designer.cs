@@ -172,6 +172,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Add_Edit";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add_Edit";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Add_Edit_FormClosed);
             this.ResumeLayout(false);
