@@ -9,7 +9,7 @@ namespace Voice_command
 {
     public partial class Form1 : Form
     {
-        Add_Edit form2 = new Add_Edit();
+        
         public Form1()
         {
             InitializeComponent();
@@ -56,7 +56,7 @@ namespace Voice_command
             killProc = new string[count+3];
             killCall = new string[count];
             path = new string[count];
-            call[0] = "Home";
+            call[0] = "Play";
             call[1] = "exit";
             int j = 0;
             for (int i = 2; i < count*3; i++)
@@ -102,7 +102,7 @@ namespace Voice_command
         {
             if (flag)
             {
-                if ((e.Result.Text.ToString() == "Home") || (e.Result.Text.ToString() == "exit"))
+                if ((e.Result.Text.ToString() == "Play") || (e.Result.Text.ToString() == "exit"))
                 {
                     flag = false;
                     MessageBox.Show("Err!");
@@ -117,7 +117,7 @@ namespace Voice_command
             }
             else
             {
-                if (e.Result.Text.ToString() == "Home")
+                if (e.Result.Text.ToString() == "Play")
                 {
                     flag = true;
                     MessageBox.Show("Voice!");
@@ -217,25 +217,44 @@ namespace Voice_command
             }
             write.Close();
         }
-
         private void btn_add_Click(object sender, EventArgs e)
         {
-            form2.Show();
-            form2.Text = "Add command";
-            form2.btn_Add.Visible = true;
-            form2.btn_Edit.Visible = false;
-            form2.tB_CloseProcess.Text = "";
-            form2.tB_NameCommand.Text = "";
-            form2.tB_PathFile.Text = "";
-            form2.tB_PronunciationCommand.Text = "";            
+            Add_Edit temp = new Add_Edit();
+            temp.Show();
+            temp.Show("Add", dataGridView1);         
         }
 
         private void btn_edit_Click(object sender, EventArgs e)
         {
-            form2.Show();
-            form2.Text = "Edit command";
-            form2.btn_Add.Visible = false;
-            form2.btn_Edit.Visible = true;
+            Add_Edit temp = new Add_Edit();
+            temp.Show();
+            temp.Show("Edit", dataGridView1);
+        }
+
+        
+        public void Hide(string temp, DataGridView param)
+        {
+            dataGridView1 = param;
+           if (temp == "Add")
+            {
+                dataGridView1.Refresh();
+            }
+            if (temp == "Edit")
+            {
+                dataGridView1.Refresh();
+            }
+        }
+
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+            int ind = dataGridView1.CurrentRow.Index;
+            dataGridView1.Rows.RemoveAt(ind);
+            int j = 1;
+            for (int i = 0; i < dataGridView1.Rows.Count-1; i++)
+            {
+                dataGridView1.Rows[i].Cells[0].Value = j.ToString();
+                j++;
+            }
         }
     }
 }

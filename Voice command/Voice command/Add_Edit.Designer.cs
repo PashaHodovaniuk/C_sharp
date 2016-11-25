@@ -149,13 +149,13 @@
             this.btn_Edit.Text = "Edit command";
             this.btn_Edit.UseVisualStyleBackColor = true;
             this.btn_Edit.Visible = false;
+            this.btn_Edit.Click += new System.EventHandler(this.btn_Edit_Click);
             // 
             // Add_Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(480, 273);
-            this.Controls.Add(this.btn_Add);
             this.Controls.Add(this.btn_Browse);
             this.Controls.Add(this.tB_CloseProcess);
             this.Controls.Add(this.tB_PathFile);
@@ -166,6 +166,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btn_Edit);
+            this.Controls.Add(this.btn_Add);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Add_Edit";

@@ -7,12 +7,42 @@ namespace Voice_command
 {
     public partial class Add_Edit : Form
     {
-        Form1 form = new Form1();
         public Add_Edit()
         {
             InitializeComponent();
         }
 
+        DataGridView dr;
+        public void Show(string temp, DataGridView param)
+        {
+            dr = param;
+            if(temp == "Add")
+            {   
+                             
+                //Add_Edit.Text = "Add command";
+                btn_Add.Visible = true;
+                btn_Edit.Visible = false;
+                tB_CloseProcess.Text = "";
+                tB_NameCommand.Text = "";
+                tB_PathFile.Text = "";
+                tB_PronunciationCommand.Text = "";
+            }
+            if (temp == "Edit")
+            {
+                //Add_Edit.Text = "Add command";
+                btn_Add.Visible = false;
+                btn_Edit.Visible = true;
+                tB_CloseProcess.Text = "";
+                tB_NameCommand.Text = "";
+                tB_PathFile.Text = "";
+                tB_PronunciationCommand.Text = "";
+                tB_NameCommand.Text = dr.Rows[dr.CurrentCell.RowIndex].Cells[1].Value.ToString();
+                tB_CloseProcess.Text = dr.Rows[dr.CurrentCell.RowIndex].Cells[4].Value.ToString();
+                tB_PronunciationCommand.Text = dr.Rows[dr.CurrentCell.RowIndex].Cells[2].Value.ToString();
+                tB_PathFile.Text = dr.Rows[dr.CurrentCell.RowIndex].Cells[3].Value.ToString();
+                
+            }
+        }
         private void Add_Edit_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Hide();
@@ -30,7 +60,7 @@ namespace Voice_command
         private void tB_PronunciationCommand_KeyPress(object sender, KeyPressEventArgs e)
         {
             char l = e.KeyChar;
-            if ((l < 'a' || l > 'z') && (l < 'A' || l > 'Z') && l != '\b')
+            if ((l < 'a' || l > 'z') && (l < 'A' || l > 'Z') && l != '\b' && l != ' ')
             {
                 e.Handled = true;
             }
@@ -39,7 +69,7 @@ namespace Voice_command
         private void tB_CloseProcess_KeyPress(object sender, KeyPressEventArgs e)
         {
             char l = e.KeyChar;
-            if ((l < 'a' || l > 'z') && (l < 'A' || l > 'Z') && l != '\b')
+            if ((l < 'a' || l > 'z') && (l < 'A' || l > 'Z') && l != '\b' && l != ' ')
             {
                 e.Handled = true;
             }
@@ -48,7 +78,7 @@ namespace Voice_command
         private void tB_PathFile_KeyPress(object sender, KeyPressEventArgs e)
         {
             char l = e.KeyChar;
-            if ((l < 'a' || l > 'z') && (l < 'A' || l > 'Z') && l != '\b' && l != ':' && l != '\\')
+            if ((l < 'a' || l > 'z') && (l < 'A' || l > 'Z') && l != '\b' && l != ':' && l != '\\' && l != ' ')
             {
                 e.Handled = true;
             }
@@ -69,15 +99,31 @@ namespace Voice_command
             }
         }
 
+        public string[] temp;
         private void btn_Add_Click(object sender, EventArgs e)
         {
-            string[] temp = new string[4];
-            temp[0] = form.dataGridView1.RowCount.ToString();
+            Form1 form = new Form1();
+            temp = new string[5];
+            temp[0] = dr.RowCount.ToString();
             temp[1] = tB_NameCommand.Text;
             temp[2] = tB_PronunciationCommand.Text;
             temp[3] = tB_PathFile.Text;
             temp[4] = tB_CloseProcess.Text;
-            form.dataGridView1.Rows.Add(temp);
+            dr.Rows.Add(temp);
+            Hide();
+            form.Hide("Add", dr);            
+        }
+
+        private void btn_Edit_Click(object sender, EventArgs e)
+        {
+            Form1 form = new Form1();
+            dr.Rows[dr.CurrentCell.RowIndex].Cells[0].Value = (dr.CurrentCell.RowIndex+1).ToString();
+            dr.Rows[dr.CurrentCell.RowIndex].Cells[1].Value = tB_NameCommand.Text;
+            dr.Rows[dr.CurrentCell.RowIndex].Cells[2].Value = tB_PronunciationCommand.Text;
+            dr.Rows[dr.CurrentCell.RowIndex].Cells[3].Value = tB_PathFile.Text;
+            dr.Rows[dr.CurrentCell.RowIndex].Cells[4].Value = tB_CloseProcess.Text;
+            Hide();
+            form.Hide("Edit", dr);
         }
     }
 }

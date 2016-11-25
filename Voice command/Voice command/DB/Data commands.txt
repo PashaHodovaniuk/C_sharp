@@ -1,2 +1,3 @@
 1|Steam|Start steam|E:\stream\Steam.exe|Close steam|
 2|Chrome|Start chrome|chrome.exe|Close chrome|
+3|Notepad|Start notepad|D:\Program\Notepad++\notepad++.exe|Close notepad|
