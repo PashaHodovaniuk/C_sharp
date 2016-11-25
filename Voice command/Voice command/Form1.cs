@@ -28,6 +28,7 @@ namespace Voice_command
         string[] killProc;
         string[] call;
         string[] path;
+        string[] killCall;
         int numberOfRecords;
         int indexOfProcess = 0;
         bool flag = false;
@@ -43,19 +44,26 @@ namespace Voice_command
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            dataGridView1.Rows.Add("1","Steam","Start steam", "E:\\stream\\Steam.exe", "Close steam");
+            dataGridView1.Rows.Add("2", "Chrome", "Start chrome", "chrome.exe", "Close chrome");
         }
         public void addCall(int count)
         {
-            call = new string[count+2];
-            killProc = new string[count];
+            call = new string[(count*3)];
+            killProc = new string[count+3];
+            killCall = new string[count];
             path = new string[count];
-            call[0] = "Jaliks";
+            call[0] = "Home";
             call[1] = "exit";
-            for (int i = 0; i < count; i++)
+            int j = 0;
+            for (int i = 2; i < count*3; i++)
             {
-                call[i+2] = dataGridView1[2, i].Value.ToString();
-                path[i] = dataGridView1[3, i].Value.ToString();
+                call[i] = dataGridView1[2, j].Value.ToString();
+                i++;                
+                call[i] = dataGridView1[4, j].Value.ToString();
+                killCall[j] = dataGridView1[4, j].Value.ToString();
+                path[j] = dataGridView1[3, j].Value.ToString();
+                j++;
             }
         }
 
@@ -91,6 +99,12 @@ namespace Voice_command
         {
             if (flag)
             {
+                if ((e.Result.Text.ToString() == "Home") || (e.Result.Text.ToString() == "exit"))
+                {
+                    flag = false;
+                    MessageBox.Show("Err!");
+                    return;
+                }          
                 runCommand(e);
                 flag = false;
             }
@@ -100,35 +114,79 @@ namespace Voice_command
             }
             else
             {
-                if (e.Result.Text.ToString() == "Jaliks")
+                if (e.Result.Text.ToString() == "Home")
                 {
                     flag = true;
+                    MessageBox.Show("Voice!");
                 }
             }            
     }
 
         private void runCommand(SpeechRecognizedEventArgs e)
         {
-            foreach (string temp in call)
+            string s = e.Result.Text.ToString();
+            char c = 'C';
+            int index = s.IndexOf(c);
+            if (index != 0)
             {
-                if (e.Result.Text.ToString() == temp)
+                foreach (string temp in call)
                 {
-                    string s = temp;
-                    char c = 'C';
-                    int index = s.IndexOf(c);
-                    if (index == 0)
+                    if (e.Result.Text.ToString() == temp)
                     {
-                        if (indexOfProcess == 1)
-                        {
-                            CloseProcess();
-                        }                        
-                    }
-                    else
-                    {
-                        StartProcess();
+                        StartProcess(temp);
+                        indexOfProcess++;
+                        return;
                     }
                 }
             }
+            else
+            {
+                if (indexOfProcess > 0)
+                {
+                    foreach (string temp in killCall)
+                    {
+                        if (e.Result.Text.ToString() == temp)
+                        {
+                            CloseProcess(temp);
+                            indexOfProcess--;
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void CloseProcess(string temp)
+        {
+            Process[] etc = Process.GetProcesses();//получим процессы
+            int index = int.Parse(findsPath(4, 0, temp));
+            foreach (Process anti in etc)//обойдем каждый процесс
+            {
+                if (anti.ProcessName == killProc[index]) //найдем нужный и убьем
+                {
+                    anti.Kill();
+                }
+            }
+            killProc[index] = "";
+        }
+
+        private void StartProcess(string temp)
+        {
+            myProcess = Process.Start(findsPath(2,3,temp));
+            killProc[int.Parse(findsPath(2,0,temp))] = myProcess.ProcessName.ToString();
+        }
+
+        private string findsPath(int indexIn, int indexOut,string temp)
+        {
+            int dlinna = dataGridView1.RowCount;
+            for (int i = 0; i < dlinna-1; i++)
+            {
+                if (this.dataGridView1[indexIn, i].Value.ToString() == temp)
+                {
+                    return dataGridView1[indexOut, i].Value.ToString();
+                }
+            }
+            return "";
         }
 
         private void btn_stop_Click(object sender, EventArgs e)
