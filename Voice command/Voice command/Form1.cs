@@ -27,15 +27,42 @@ namespace Voice_command
         int numberOfRecords;
         int indexOfProcess = 0;
         bool flag = false;
+        public static bool fSave = false;
 
         private void btn_exit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            SaveOfExit();                        
+        }
+
+        private void SaveOfExit()
+        {
+            if (fSave)
+            {
+                DialogResult result = MessageBox.Show("Текст сообщения", "Заголовок сообщения", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    SaveFile();
+                    Application.Exit();
+
+                }
+                else if (result == DialogResult.No)
+                {
+                    Application.Exit();
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                Application.Exit();
+            }
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            SaveOfExit();
         }
         
         private void Form1_Load(object sender, EventArgs e)
@@ -112,7 +139,6 @@ namespace Voice_command
                 {
                     flag = false;
                     System.Console.Beep(333, 1000);
-                    //MessageBox.Show("Err!");
                     return;
                 }
                 runCommand(e);
@@ -120,7 +146,7 @@ namespace Voice_command
             }
             if (e.Result.Text.ToString() == "Exit")
             {
-                Application.Exit();
+                SaveOfExit();
             }
             else
             {
@@ -128,7 +154,6 @@ namespace Voice_command
                 {
                     flag = true;
                     System.Console.Beep(200, 500);
-                    //MessageBox.Show("Voice!");
                 }
             }
         }
@@ -213,20 +238,26 @@ namespace Voice_command
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {            
+            SaveFile();
+        }
+
+        private void SaveFile()
         {
             var applicationDirectory = Path.GetDirectoryName(Application.ExecutablePath);
             const string fileNameToOpen = "DB\\Data commands.txt";
             var filePathToOpen = Path.Combine(applicationDirectory, fileNameToOpen);
             TextWriter write = new StreamWriter(filePathToOpen);
-            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++) 
+            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
             {
-                for (int j=0; j<dataGridView1.Columns.Count; j++)
+                for (int j = 0; j < dataGridView1.Columns.Count; j++)
                 {
-                    write.Write(dataGridView1.Rows[i].Cells[j].Value.ToString() +"|");
+                    write.Write(dataGridView1.Rows[i].Cells[j].Value.ToString() + "|");
                 }
                 write.WriteLine();
             }
             write.Close();
+            fSave = false;
         }
 
         private void btn_add_Click(object sender, EventArgs e)
@@ -246,7 +277,8 @@ namespace Voice_command
         public void Hide(string temp, DataGridView param)
         {
             dataGridView1 = param;
-            dataGridView1.Refresh();            
+            dataGridView1.Refresh();
+            fSave = true;                 
         }
 
         private void btn_delete_Click(object sender, EventArgs e)
@@ -259,6 +291,7 @@ namespace Voice_command
                 dataGridView1.Rows[i].Cells[0].Value = j.ToString();
                 j++;
             }
+            fSave = true;
         }
     }
 }
