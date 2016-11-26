@@ -293,5 +293,11 @@ namespace Voice_command
             }
             fSave = true;
         }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutVoiceCommand a = new AboutVoiceCommand();
+            a.Show();
+        }
     }
 }
