@@ -30,17 +30,26 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dGV_show = new System.Windows.Forms.DataGridView();
-            this.kyrsovoyDataSet = new System_of_sports_organizations.KyrsovoyDataSet();
             this.competitionResultsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.kyrsovoyDataSet = new System_of_sports_organizations.KyrsovoyDataSet();
             this.competitionResultsTableAdapter = new System_of_sports_organizations.KyrsovoyDataSetTableAdapters.CompetitionResultsTableAdapter();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idCompetitionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idCompositionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idSportCompDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.resultDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sportCompBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sportCompTableAdapter = new System_of_sports_organizations.KyrsovoyDataSetTableAdapters.SportCompTableAdapter();
+            this.competitionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.competitionTableAdapter = new System_of_sports_organizations.KyrsovoyDataSetTableAdapters.CompetitionTableAdapter();
+            this.competitionBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.kyrsovoyDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.compositionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.cB_select = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dGV_show)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kyrsovoyDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.competitionResultsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kyrsovoyDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sportCompBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.competitionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.competitionBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kyrsovoyDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.compositionBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dGV_show
@@ -50,76 +59,92 @@
             this.dGV_show.AllowUserToOrderColumns = true;
             this.dGV_show.AllowUserToResizeColumns = false;
             this.dGV_show.AllowUserToResizeRows = false;
-            this.dGV_show.AutoGenerateColumns = false;
             this.dGV_show.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dGV_show.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.idCompetitionDataGridViewTextBoxColumn,
-            this.idCompositionDataGridViewTextBoxColumn,
-            this.idSportCompDataGridViewTextBoxColumn,
-            this.resultDataGridViewTextBoxColumn});
-            this.dGV_show.DataSource = this.competitionResultsBindingSource;
             this.dGV_show.Location = new System.Drawing.Point(12, 12);
             this.dGV_show.Name = "dGV_show";
             this.dGV_show.ReadOnly = true;
             this.dGV_show.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dGV_show.Size = new System.Drawing.Size(590, 486);
+            this.dGV_show.Size = new System.Drawing.Size(638, 486);
             this.dGV_show.TabIndex = 0;
-            // 
-            // kyrsovoyDataSet
-            // 
-            this.kyrsovoyDataSet.DataSetName = "KyrsovoyDataSet";
-            this.kyrsovoyDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // competitionResultsBindingSource
             // 
             this.competitionResultsBindingSource.DataMember = "CompetitionResults";
             this.competitionResultsBindingSource.DataSource = this.kyrsovoyDataSet;
             // 
+            // kyrsovoyDataSet
+            // 
+            this.kyrsovoyDataSet.DataSetName = "KyrsovoyDataSet";
+            this.kyrsovoyDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // competitionResultsTableAdapter
             // 
             this.competitionResultsTableAdapter.ClearBeforeFill = true;
             // 
-            // idDataGridViewTextBoxColumn
+            // sportCompBindingSource
             // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.sportCompBindingSource.DataMember = "SportComp";
+            this.sportCompBindingSource.DataSource = this.kyrsovoyDataSet;
             // 
-            // idCompetitionDataGridViewTextBoxColumn
+            // sportCompTableAdapter
             // 
-            this.idCompetitionDataGridViewTextBoxColumn.DataPropertyName = "id_Competition";
-            this.idCompetitionDataGridViewTextBoxColumn.HeaderText = "id_Competition";
-            this.idCompetitionDataGridViewTextBoxColumn.Name = "idCompetitionDataGridViewTextBoxColumn";
-            this.idCompetitionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.sportCompTableAdapter.ClearBeforeFill = true;
             // 
-            // idCompositionDataGridViewTextBoxColumn
+            // competitionBindingSource
             // 
-            this.idCompositionDataGridViewTextBoxColumn.DataPropertyName = "id_Composition";
-            this.idCompositionDataGridViewTextBoxColumn.HeaderText = "id_Composition";
-            this.idCompositionDataGridViewTextBoxColumn.Name = "idCompositionDataGridViewTextBoxColumn";
-            this.idCompositionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.competitionBindingSource.DataMember = "Competition";
+            this.competitionBindingSource.DataSource = this.kyrsovoyDataSet;
             // 
-            // idSportCompDataGridViewTextBoxColumn
+            // competitionTableAdapter
             // 
-            this.idSportCompDataGridViewTextBoxColumn.DataPropertyName = "id_SportComp";
-            this.idSportCompDataGridViewTextBoxColumn.HeaderText = "id_SportComp";
-            this.idSportCompDataGridViewTextBoxColumn.Name = "idSportCompDataGridViewTextBoxColumn";
-            this.idSportCompDataGridViewTextBoxColumn.ReadOnly = true;
+            this.competitionTableAdapter.ClearBeforeFill = true;
             // 
-            // resultDataGridViewTextBoxColumn
+            // competitionBindingSource1
             // 
-            this.resultDataGridViewTextBoxColumn.DataPropertyName = "Result";
-            this.resultDataGridViewTextBoxColumn.HeaderText = "Result";
-            this.resultDataGridViewTextBoxColumn.Name = "resultDataGridViewTextBoxColumn";
-            this.resultDataGridViewTextBoxColumn.ReadOnly = true;
+            this.competitionBindingSource1.DataMember = "Competition";
+            this.competitionBindingSource1.DataSource = this.kyrsovoyDataSet;
+            // 
+            // kyrsovoyDataSetBindingSource
+            // 
+            this.kyrsovoyDataSetBindingSource.DataSource = this.kyrsovoyDataSet;
+            this.kyrsovoyDataSetBindingSource.Position = 0;
+            // 
+            // compositionBindingSource
+            // 
+            this.compositionBindingSource.DataMember = "Composition";
+            this.compositionBindingSource.DataSource = this.kyrsovoyDataSetBindingSource;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(656, 64);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(239, 40);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Просмотр";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // cB_select
+            // 
+            this.cB_select.FormattingEnabled = true;
+            this.cB_select.Items.AddRange(new object[] {
+            "Тренер",
+            "Спортсмен",
+            "График соревнований",
+            "Результаты соревнований"});
+            this.cB_select.Location = new System.Drawing.Point(656, 29);
+            this.cB_select.Name = "cB_select";
+            this.cB_select.Size = new System.Drawing.Size(239, 21);
+            this.cB_select.TabIndex = 2;
+            this.cB_select.Text = "Тренер";
             // 
             // User_window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(907, 510);
+            this.Controls.Add(this.cB_select);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.dGV_show);
             this.MaximizeBox = false;
             this.Name = "User_window";
@@ -127,8 +152,13 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.User_window_FormClosed);
             this.Load += new System.EventHandler(this.User_window_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dGV_show)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kyrsovoyDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.competitionResultsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kyrsovoyDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sportCompBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.competitionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.competitionBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kyrsovoyDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.compositionBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -139,10 +169,14 @@
         private KyrsovoyDataSet kyrsovoyDataSet;
         private System.Windows.Forms.BindingSource competitionResultsBindingSource;
         private KyrsovoyDataSetTableAdapters.CompetitionResultsTableAdapter competitionResultsTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idCompetitionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idCompositionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idSportCompDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn resultDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource sportCompBindingSource;
+        private KyrsovoyDataSetTableAdapters.SportCompTableAdapter sportCompTableAdapter;
+        private System.Windows.Forms.BindingSource competitionBindingSource;
+        private KyrsovoyDataSetTableAdapters.CompetitionTableAdapter competitionTableAdapter;
+        private System.Windows.Forms.BindingSource kyrsovoyDataSetBindingSource;
+        private System.Windows.Forms.BindingSource competitionBindingSource1;
+        private System.Windows.Forms.BindingSource compositionBindingSource;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox cB_select;
     }
 }
