@@ -59,6 +59,8 @@
             this.dGV_show.AllowUserToOrderColumns = true;
             this.dGV_show.AllowUserToResizeColumns = false;
             this.dGV_show.AllowUserToResizeRows = false;
+            this.dGV_show.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dGV_show.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dGV_show.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dGV_show.Location = new System.Drawing.Point(12, 12);
             this.dGV_show.Name = "dGV_show";
@@ -126,6 +128,8 @@
             // 
             // cB_select
             // 
+            this.cB_select.AllowDrop = true;
+            this.cB_select.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cB_select.FormattingEnabled = true;
             this.cB_select.Items.AddRange(new object[] {
             "Тренер",
@@ -135,8 +139,8 @@
             this.cB_select.Location = new System.Drawing.Point(656, 29);
             this.cB_select.Name = "cB_select";
             this.cB_select.Size = new System.Drawing.Size(239, 21);
-            this.cB_select.TabIndex = 2;
-            this.cB_select.Text = "Тренер";
+            this.cB_select.TabIndex = 1;
+            this.cB_select.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cB_select_KeyPress);
             // 
             // User_window
             // 
