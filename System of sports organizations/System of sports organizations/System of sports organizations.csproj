@@ -89,6 +89,7 @@
     <EmbeddedResource Include="User window.resx">
       <DependentUpon>User window.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="KyrsovoyDataSet.xsc">
       <DependentUpon>KyrsovoyDataSet.xsd</DependentUpon>
     </None>

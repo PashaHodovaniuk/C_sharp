@@ -53,13 +53,13 @@ namespace System_of_sports_organizations
                         break;
                     case "График соревнований":
                         {
-                            string reg = "SELECT Com.id 'ID', Com.Name 'Name', Com.Data 'Data', SC.Name 'Sport complex' FROM dbo.Competition Com, dbo.SportComp SC WHERE Com.id_SportComp = SC.id";
+                            string reg = "SELECT Com.id, Com.Name, Com.Data, SC.Name FROM dbo.Competition Com, dbo.SportComp SC WHERE Com.id_SportComp = SC.id";
                             cmd = new SqlCommand(reg, con);
                         }
                         break;
                     case "Результаты соревнований":
                         {
-                            string reg = "SELECT CompetitionResults.id 'ID', Competition.Name 'Name',Sportsman.FIO 'FIO',SportComp.Name 'Sport complex', CompetitionResults.Result 'Result' FROM CompetitionResults LEFT OUTER join Competition ON CompetitionResults.id_Competition = Competition.id LEFT OUTER join SportComp ON CompetitionResults.id_SportComp = SportComp.id LEFT OUTER join Composition on CompetitionResults.id_Composition = Composition.id LEFT OUTER join Sportsman on Composition.id_Sportsman = Sportsman.id";
+                            string reg = "SELECT CompetitionResults.id, Competition.Name,Sportsman.FIO,SportComp.Name, CompetitionResults.Result FROM CompetitionResults LEFT OUTER join Competition ON CompetitionResults.id_Competition = Competition.id LEFT OUTER join SportComp ON CompetitionResults.id_SportComp = SportComp.id LEFT OUTER join Composition on CompetitionResults.id_Composition = Composition.id LEFT OUTER join Sportsman on Composition.id_Sportsman = Sportsman.id";
                             cmd = new SqlCommand(reg, con);
                         }
                         break;
@@ -68,8 +68,18 @@ namespace System_of_sports_organizations
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
                 dGV_show.DataSource = dt;
+
                 con.Close();
                 con.Dispose();
+                cB_Search.Items.Clear();
+                for(int i = 0; i < dGV_show.Columns.Count; i++)
+                {
+                    cB_Search.Items.Add(dGV_show.Columns[i].Name.ToString());
+                }
+                cB_Search.Enabled = true;
+                tB_Search.Enabled = true;
+                btn_Search.Enabled = true;
+                
             }
             else
             {
@@ -87,6 +97,49 @@ namespace System_of_sports_organizations
         private void cB_select_KeyPress(object sender, KeyPressEventArgs e)
         {
             return;
+        }
+
+        private void btn_Search_Click(object sender, EventArgs e)
+        {
+            if (cB_Search.Text != "" || tB_Search.Text != "")
+            {
+                con = new SqlConnection();
+                // задание строки связи
+                con.ConnectionString = @"Data Source=DESKTOP-3H9C6CS\SQLEXPRESS; Initial Catalog=Kyrsovoy; Integrated Security=True";
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                switch (cB_select.Text)
+                {
+                    case "Тренер":
+                        {
+                            cmd = new SqlCommand("Select * From dbo.Trainer WHERE "+ cB_Search.Text +"="+ tB_Search.Text+"", con);
+                        }
+                        break;
+                    case "Спортсмен":
+                        {
+                            cmd = new SqlCommand("Select * From dbo.Sportsman WHERE " + cB_Search.Text + "=" + tB_Search.Text + "", con);
+                        }
+                        break;
+                    case "График соревнований":
+                        {
+                            string reg = "SELECT Com.id, Com.Name, Com.Data, SC.Name FROM dbo.Competition Com, dbo.SportComp SC WHERE Com.id_SportComp = SC.id " + cB_Search.Text + "=" + tB_Search.Text + "";
+                            cmd = new SqlCommand(reg, con);
+                        }
+                        break;
+                    case "Результаты соревнований":
+                        {
+                            string reg = "SELECT CompetitionResults.id , Competition.Name ,Sportsman.FIO,SportComp.Name , CompetitionResults.Result  FROM CompetitionResults LEFT OUTER join Competition ON CompetitionResults.id_Competition = Competition.id LEFT OUTER join SportComp ON CompetitionResults.id_SportComp = SportComp.id LEFT OUTER join Composition on CompetitionResults.id_Composition = Composition.id LEFT OUTER join Sportsman on Composition.id_Sportsman = Sportsman.id WHERE " + cB_Search.Text + "=" + tB_Search.Text + "";
+                            cmd = new SqlCommand(reg, con);
+                        }
+                        break;
+                }
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                dGV_show.DataSource = dt;
+                con.Close();
+                con.Dispose();
+            }
         }
     }
 }
