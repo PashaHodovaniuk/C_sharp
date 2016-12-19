@@ -220,7 +220,7 @@
             this.Controls.Add(this.dGV_show);
             this.MaximizeBox = false;
             this.Name = "User_window";
-            this.Text = "User_window";
+            this.Text = "Пользователь";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.User_window_FormClosed);
             this.Load += new System.EventHandler(this.User_window_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dGV_show)).EndInit();

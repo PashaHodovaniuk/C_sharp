@@ -133,5 +133,20 @@ namespace System_of_sports_organizations
             dt = (DataTable)dGV_show.DataSource;
             da.Update(dt);
         }
+
+        private void btn_Add_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Edit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Del_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

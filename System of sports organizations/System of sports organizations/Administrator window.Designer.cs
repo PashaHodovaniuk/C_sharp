@@ -37,7 +37,9 @@
             this.cB_select = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dGV_show = new System.Windows.Forms.DataGridView();
-            this.btn_Save = new System.Windows.Forms.Button();
+            this.btn_Add = new System.Windows.Forms.Button();
+            this.btn_Edit = new System.Windows.Forms.Button();
+            this.btn_Del = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dGV_show)).BeginInit();
             this.SuspendLayout();
             // 
@@ -133,22 +135,44 @@
             this.dGV_show.Size = new System.Drawing.Size(638, 486);
             this.dGV_show.TabIndex = 8;
             // 
-            // btn_Save
+            // btn_Add
             // 
-            this.btn_Save.Location = new System.Drawing.Point(647, 303);
-            this.btn_Save.Name = "btn_Save";
-            this.btn_Save.Size = new System.Drawing.Size(236, 43);
-            this.btn_Save.TabIndex = 17;
-            this.btn_Save.Text = "Сохранить";
-            this.btn_Save.UseVisualStyleBackColor = true;
-            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
+            this.btn_Add.Location = new System.Drawing.Point(644, 309);
+            this.btn_Add.Name = "btn_Add";
+            this.btn_Add.Size = new System.Drawing.Size(236, 35);
+            this.btn_Add.TabIndex = 17;
+            this.btn_Add.Text = "Добавить запись";
+            this.btn_Add.UseVisualStyleBackColor = true;
+            this.btn_Add.Click += new System.EventHandler(this.btn_Add_Click);
+            // 
+            // btn_Edit
+            // 
+            this.btn_Edit.Location = new System.Drawing.Point(644, 367);
+            this.btn_Edit.Name = "btn_Edit";
+            this.btn_Edit.Size = new System.Drawing.Size(236, 35);
+            this.btn_Edit.TabIndex = 18;
+            this.btn_Edit.Text = "Редактировать запись";
+            this.btn_Edit.UseVisualStyleBackColor = true;
+            this.btn_Edit.Click += new System.EventHandler(this.btn_Edit_Click);
+            // 
+            // btn_Del
+            // 
+            this.btn_Del.Location = new System.Drawing.Point(644, 424);
+            this.btn_Del.Name = "btn_Del";
+            this.btn_Del.Size = new System.Drawing.Size(236, 35);
+            this.btn_Del.TabIndex = 19;
+            this.btn_Del.Text = "Удалить запись";
+            this.btn_Del.UseVisualStyleBackColor = true;
+            this.btn_Del.Click += new System.EventHandler(this.btn_Del_Click);
             // 
             // Administrator_window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(893, 518);
-            this.Controls.Add(this.btn_Save);
+            this.Controls.Add(this.btn_Del);
+            this.Controls.Add(this.btn_Edit);
+            this.Controls.Add(this.btn_Add);
             this.Controls.Add(this.btn_Search);
             this.Controls.Add(this.tB_Search);
             this.Controls.Add(this.label3);
@@ -159,7 +183,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dGV_show);
             this.Name = "Administrator_window";
-            this.Text = "Administrator_window";
+            this.Text = "Администратор";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Administrator_window_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dGV_show)).EndInit();
             this.ResumeLayout(false);
@@ -178,6 +202,8 @@
         private System.Windows.Forms.ComboBox cB_select;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dGV_show;
-        private System.Windows.Forms.Button btn_Save;
+        private System.Windows.Forms.Button btn_Add;
+        private System.Windows.Forms.Button btn_Edit;
+        private System.Windows.Forms.Button btn_Del;
     }
 }

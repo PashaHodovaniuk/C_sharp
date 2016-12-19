@@ -38,7 +38,7 @@ namespace Voice_command
         {
             if (fSave)
             {
-                DialogResult result = MessageBox.Show("Текст сообщения", "Заголовок сообщения", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("Были проведены изменения, не хотели бы вы сохранить их?", "Предупреждение", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     SaveFile();

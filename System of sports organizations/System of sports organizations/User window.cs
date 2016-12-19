@@ -72,18 +72,18 @@ namespace System_of_sports_organizations
                 con.Close();
                 con.Dispose();
                 cB_Search.Items.Clear();
-                for(int i = 0; i < dGV_show.Columns.Count; i++)
+                for (int i = 0; i < dGV_show.Columns.Count; i++)
                 {
                     cB_Search.Items.Add(dGV_show.Columns[i].Name.ToString());
                 }
                 cB_Search.Enabled = true;
                 tB_Search.Enabled = true;
                 btn_Search.Enabled = true;
-                
+
             }
             else
             {
-                MessageBox.Show("Выберите вариант просмотра", "Сообщение", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("Выберите вариант просмотра", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -112,7 +112,7 @@ namespace System_of_sports_organizations
                 {
                     case "Тренер":
                         {
-                            cmd = new SqlCommand("Select * From dbo.Trainer WHERE "+ cB_Search.Text +"="+ tB_Search.Text+"", con);
+                            cmd = new SqlCommand("Select * From dbo.Trainer WHERE " + cB_Search.Text + "=" + tB_Search.Text + "", con);
                         }
                         break;
                     case "Спортсмен":

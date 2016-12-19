@@ -3,7 +3,7 @@
   <Class Name="System_of_sports_organizations.Administrator_window">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAgAAACAAABQAAICgAQASEAAKAAAAAEAgAAAQAAA=</HashCode>
+      <HashCode>CBAgAgCABCAAABQAgICgAQASEAAKAAAAAEQwAAQQAAA=</HashCode>
       <FileName>Administrator window.cs</FileName>
     </TypeIdentifier>
   </Class>
